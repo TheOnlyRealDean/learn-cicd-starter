@@ -30,12 +30,10 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 		return
 	}
 
-	if _, err := w.WriteHeader(dat); err != nil {
-		log.Printf("error writing JSON response: %v", err)
-	}
-
+	w.WriteHeader(code)
 	if _, err := w.Write(dat); err != nil {
-    // optional: loggen
-    // log.Printf("error writing response: %v", err)
+		// Hier behandeln wir den Fehler von w.Write,
+		// damit gosec nicht mehr meckert.
+		log.Printf("Error writing response: %s", err)
 	}
 }
