@@ -29,6 +29,11 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 		w.WriteHeader(500)
 		return
 	}
+
 	w.WriteHeader(code)
-	w.Write(dat)
+	if _, err := w.Write(dat); err != nil {
+		// Hier behandeln wir den Fehler von w.Write,
+		// damit gosec nicht mehr meckert.
+		log.Printf("Error writing response: %s", err)
+	}
 }
