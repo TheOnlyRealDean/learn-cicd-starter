@@ -90,12 +90,12 @@ func main() {
 
 	router.Mount("/v1", v1Router)
 	srv := &http.Server{
-    Addr:              ":" + port,
-    Handler:           router,
-    ReadHeaderTimeout: 5 * time.Second,  // wichtig gegen Slowloris
-    ReadTimeout:       10 * time.Second, // optional, aber gesund
-    WriteTimeout:      10 * time.Second, // optional
-    IdleTimeout:       60 * time.Second, // optional
+		Addr:              ":" + port,
+		Handler:           router,
+		ReadHeaderTimeout: 5 * time.Second,  // wichtig gegen Slowloris
+		ReadTimeout:       10 * time.Second, // optional, aber gesund
+		WriteTimeout:      10 * time.Second, // optional
+		IdleTimeout:       60 * time.Second, // optional
 	}
 
 	log.Printf("Serving on port: %s\n", port)
